@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock APP</title>
+</head>
+<body>
+    <h1>Verifica precios de acciones</h1>
+    <!-- Formulario para ingresar símbolos de acciones -->
+    <form method="post" action="/get_price">
+        <label for="symbols">Ingresa simbolo(s) de acciones (separados por coma):</label>
+        <input type="text" name="symbols" id="symbols" title="Ejemplo de símbolo: IBM, DELL, HP" />
+        <button type="submit">Obtener</button>
+    </form>
+    
+    <!-- Mostrar precios de acciones si están disponibles -->
+    {% if stock_prices %}
+        <h2>Precios de las acciones</h2>
+        <ul>
+            <!-- Iterar sobre cada símbolo y precio de acción -->
+            {% for symbol, price in stock_prices.items() %}
+                <li>{{ symbol }}: ${{ price }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
